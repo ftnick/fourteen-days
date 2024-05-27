@@ -159,7 +159,7 @@
       <button style="font-size: 15px" onclick="resetZoom()">Zoom Out</button>
     </div>
 
-    <div class="nav title" style="top: 50px">
+    <div id="titles" class="nav title" style="top: 50px">
       <h1>
         how to kill youself in fourteen days
         <span style="font-style: italic; font-size: 17px">by nick</span>
@@ -262,6 +262,12 @@
           ).textContent = `${currentPage}/${totalPages}`;
         }
 
+        if (currentPage > 0 ) {
+          document.getElementById("titles").classList.add("hidden")
+        } else {
+          document.getElementById("titles").classList.remove("hidden")
+        }
+
         if (zoomed) {
           zoomIn();
         } else if (!zoomed) {
@@ -313,6 +319,12 @@
           document.getElementById(
             "pageNumber"
           ).textContent = `${currentPage}/${totalPages}`;
+        }
+
+        if (currentPage > 0 ) {
+          document.getElementById("titles").classList.add("hidden")
+        } else {
+          document.getElementById("titles").classList.remove("hidden")
         }
 
         if (zoomed) {
