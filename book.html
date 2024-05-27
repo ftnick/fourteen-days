@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scrollbar */
+        }
+        .page {
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            position: relative;
+        }
+        .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; /* Center-align text */
+    max-width: 80%; /* Limit content width */
+    padding: 20px; /* Add padding for better readability */
+}
+
+        img {
+            max-width: 80%;
+            max-height: 80%;
+            display: block; /* Ensure images are centered */
+            margin: 0 auto; /* Center images horizontally */
+        }
+        .nav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .nav button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: 0;
+            background-color: white;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page" id="IntroPage">
+    <div class="content">
+        <h1>Content Disclaimer</h1>
+        <p>This poem collection contains sensitive themes and may not be suitable for all audiences. Reader discretion is advised.</p>
+        <p>The themes explored in this collection include but are not limited to:</p>
+        <p>Depression</p>
+        <p>Anxiety</p>
+        <p>Self-harm</p>
+        <p>Suicide</p>
+        <p>While these topics are approached with care and sensitivity, please be aware of their potential impact on your mental health.</p>
+    </div>
+</div>
+
+<script>
+    const totalPages = 20; // Increased total pages count
+
+    for (let i = 1; i <= totalPages; i++) {
+        document.write(`
+            <div class="page" id="page${i}">
+                <img src="assets/pagephotos/${i}.jpg" alt="Page ${i}">
+            </div>
+        `);
+    }
+</script>
+
+<div class="page" id="EndingPage"> <!-- New Ending Page -->
+    <div class="content">
+        <h1>The End</h1>
+        <p>Thank you for reading.</p>
+    </div>
+</div>
+
+<audio id="backgroundMusic" loop>
+    <source src="assets/music/myguardianangel.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<div class="nav">
+    <button class="hidden" id="prevPagebtn" onclick="prevPage()">Previous</button>
+    <button id="nextPagebtn" onclick="nextPage()">Next</button>
+</div>
+
+<script>
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const prevbtn = document.getElementById('prevPagebtn');
+    const nextbtn = document.getElementById('nextPagebtn');
+    let currentPage = 0;
+
+    function nextPage() {
+        if (backgroundMusic.paused) {
+            backgroundMusic.play();
+        }
+        if (currentPage < totalPages) {
+            if (currentPage == 0) {
+                document.getElementById('IntroPage').style.display = 'none';
+            } else {
+                document.getElementById(`page${currentPage}`).style.display = 'none';
+            }
+            currentPage++;
+            if (currentPage == totalPages) {
+                document.getElementById('EndingPage').style.display = 'flex'; // Display ending page
+            } else {
+                document.getElementById(`page${currentPage}`).style.display = 'flex';
+            }
+        }
+
+        if (currentPage > 0) {
+            prevbtn.classList.remove("hidden")
+        } else {
+            prevbtn.classList.add("hidden")
+        }
+
+        if (currentPage == totalPages) {
+            nextbtn.classList.add("hidden")
+        } else {
+            nextbtn.classList.remove("hidden")
+        }
+    }
+
+    function prevPage() {
+        if (backgroundMusic.paused) {
+            backgroundMusic.play();
+        }
+        if (currentPage > 0) {
+            if (currentPage == 1) {
+                document.getElementById('IntroPage').style.display = 'flex';
+            } else if (currentPage == totalPages) {
+                document.getElementById('EndingPage').style.display = 'none';
+            } else {
+                document.getElementById(`page${currentPage}`).style.display = 'none';
+            }
+            currentPage--;
+            if (currentPage > 0) {
+                document.getElementById(`page${currentPage}`).style.display = 'flex';
+            }
+        }
+
+        if (currentPage > 0) {
+            prevbtn.classList.remove("hidden")
+        } else {
+            prevbtn.classList.add("hidden")
+        }
+
+        if (currentPage == totalPages) {
+            nextbtn.classList.add("hidden")
+        } else {
+            nextbtn.classList.remove("hidden")
+        }
+    }
+
+    // Initially show the intro page
+    document.getElementById('IntroPage').style.display = 'flex';
+</script>
+
+</body>
+</html>
