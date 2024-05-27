@@ -6,9 +6,9 @@
     <title>Book</title>
     <style>
       @font-face {
-            font-family: 'uu';
-            src: url('assets/font/uu.ttf') format('truetype');
-        }
+        font-family: "uu";
+        src: url("assets/font/uu.ttf") format("truetype");
+      }
 
       body {
         font-family: Arial, sans-serif;
@@ -67,14 +67,12 @@
         background-color: black;
       }
       .title {
-        font-family: 'uu';
+        font-family: "uu";
         font-size: 15px;
       }
     </style>
   </head>
   <body>
-
-
     <div class="page" id="IntroPage">
       <div class="content">
         <h1>Content Disclaimer</h1>
@@ -130,7 +128,10 @@
     </div>
 
     <div class="nav title" style="top: 50px">
-      <h1>how to kill youself in fourteen days <span style="font-style: italic; font-size: 17px;">by nick</span></h1>
+      <h1>
+        how to kill youself in fourteen days
+        <span style="font-style: italic; font-size: 17px">by nick</span>
+      </h1>
     </div>
 
     <div id="pageNumber" class="nav" style="bottom: 70px">
@@ -162,7 +163,7 @@
 
       function nextPage() {
         if (debounce) {
-            return
+          return;
         }
         debounce = true;
         if (backgroundMusic.paused) {
@@ -223,7 +224,7 @@
         updatePageNumber();
 
         setTimeout(() => {
-            debounce = false;
+          debounce = false;
         }, 1000);
       }
 
@@ -292,6 +293,40 @@
         currentPageImg.style.maxWidth = "80%";
         currentPageImg.style.maxHeight = "80%";
         zoomed = false;
+      }
+
+      function greyscaleImage(imageElement) {
+        // Create a canvas element
+        var canvas = document.createElement("canvas");
+        var ctx = canvas.getContext("2d");
+
+        // Set canvas dimensions to match the image
+        canvas.width = imageElement.width;
+        canvas.height = imageElement.height;
+
+        // Draw the image onto the canvas
+        ctx.drawImage(imageElement, 0, 0);
+
+        // Get the image data
+        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var data = imageData.data;
+
+        // Loop through each pixel and greyscale it
+        for (var i = 0; i < data.length; i += 4) {
+          // Calculate greyscale value
+          var greyscale = (data[i] + data[i + 1] + data[i + 2]) / 3;
+
+          // Set red, green, and blue channels to the greyscale value
+          data[i] = greyscale; // Red channel
+          data[i + 1] = greyscale; // Green channel
+          data[i + 2] = greyscale; // Blue channel
+        }
+
+        // Put the modified image data back onto the canvas
+        ctx.putImageData(imageData, 0, 0);
+
+        // Replace the image with the greyscaled version
+        imageElement.src = canvas.toDataURL();
       }
 
       // Initially show the intro page
