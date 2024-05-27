@@ -16,34 +16,43 @@
         padding: 0;
         overflow-x: hidden; /* Prevent horizontal scrollbar */
       }
+
       .page {
-        width: 100vw;
+        width: 100%;
         height: 100vh;
         display: none;
         position: relative;
       }
+
       .content {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center; /* Center-align text */
-        max-width: 80%; /* Limit content width */
+        width: 80%; /* Limit content width */
         padding: 20px; /* Add padding for better readability */
       }
 
       img {
-        max-width: 80%;
-        max-height: 80%;
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
         display: block; /* Ensure images are centered */
         margin: 0 auto; /* Center images horizontally */
+        object-fit: contain;
       }
+
       .nav {
         position: fixed;
         bottom: 20px;
         left: 50%;
         transform: translateX(-50%);
+        width: 100%; /* Full width */
+        text-align: center; /* Center-align buttons */
       }
+
       .nav button {
         padding: 10px 20px;
         font-size: 18px;
@@ -51,24 +60,39 @@
         border: 0;
         background-color: white;
       }
+
       .hidden {
         display: none;
       }
+
       .turn-black {
         transition: background-color 10s linear;
         background-color: black;
       }
+
       .turn-white {
         transition: color 2s linear;
         color: white;
       }
+
       .turn-white2 {
         transition: background-color 10s linear;
         background-color: black;
       }
+
       .title {
         font-family: "uu";
         font-size: 15px;
+      }
+
+      @media screen and (max-width: 768px) {
+        .content {
+          width: 90%; /* Adjust width for smaller screens */
+        }
+
+        .nav button {
+          font-size: 16px; /* Adjust font size for smaller screens */
+        }
       }
     </style>
   </head>
@@ -77,16 +101,26 @@
       <div class="content">
         <h1>Content Warning and Disclaimer</h1>
         <p>
-            Please note that the following content is entirely fictional and is presented for literary purposes only. Any resemblance to real events, persons, or entities is purely coincidental.
+          Please note that the following content is entirely fictional and is
+          presented for literary purposes only. Any resemblance to real events,
+          persons, or entities is purely coincidental.
         </p>
         <p>
-            This compilation of poems navigates through delicate subject matter that may not be suitable for all audiences. Reader discretion is strongly advised.
+          This compilation of poems navigates through delicate subject matter
+          that may not be suitable for all audiences. Reader discretion is
+          strongly advised.
         </p>
         <p>
-            While these themes are approached with utmost sensitivity and thoughtfulness, it is essential to recognize the potential impact they may have on mental well-being.
+          While these themes are approached with utmost sensitivity and
+          thoughtfulness, it is essential to recognize the potential impact they
+          may have on mental well-being.
         </p>
         <p>
-            It is crucial to emphasize that the content of this poem is not intended as life advice or guidance. If you are experiencing depression or contemplating self-harm, we urge you to seek assistance from a trusted adult or medical professional immediately. Your well-being is of paramount importance.
+          It is crucial to emphasize that the content of this poem is not
+          intended as life advice or guidance. If you are experiencing
+          depression or contemplating self-harm, we urge you to seek assistance
+          from a trusted adult or medical professional immediately. Your
+          well-being is of paramount importance.
         </p>
         <p>To continue, press Next below.</p>
       </div>
@@ -298,13 +332,14 @@
       updatePageNumber();
 
       nextbtn.disabled = true;
-      nextbtn.innerHTML = "Please read the content warning and disclaimer before reading the poem.<br>(Wait 10 seconds)";
-      document.getElementById("pageNumber").classList.add("hidden")
+      nextbtn.innerHTML =
+        "Please read the content warning and disclaimer before reading the poem.<br>(Wait 10 seconds)";
+      document.getElementById("pageNumber").classList.add("hidden");
       setTimeout(() => {
-        nextbtn.innerHTML = "Next"
+        nextbtn.innerHTML = "Next";
         nextbtn.disabled = false;
-        document.getElementById("pageNumber").classList.remove("hidden")
-        }, 10000);
+        document.getElementById("pageNumber").classList.remove("hidden");
+      }, 10000);
     </script>
   </body>
 </html>
