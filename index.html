@@ -178,6 +178,21 @@
     </div>
 
     <script>
+      function isMobileDevice() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        );
+      }
+      function blockMobileUsers() {
+        if (isMobileDevice()) {
+          window.location.href = "block";
+        }
+      }
+
+      blockMobileUsers();
+    </script>
+
+    <script>
       const backgroundMusic = document.getElementById("backgroundMusic");
       const prevbtn = document.getElementById("prevPagebtn");
       const zoomnavs = document.getElementById("ZOOM_NAV");
