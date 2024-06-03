@@ -1,0 +1,27 @@
+.topbar {
+    background-color: #ffffff00;
+    color: #ffffff00;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-options {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    margin-left: auto; /* This will push the nav-options to the far right */
+}
+.nav-options li {
+    margin-left: 20px;
+}
+.nav-link {
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+}
