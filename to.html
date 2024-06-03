@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting</title>
+  </head>
+  <body>
+    <p id="txt">Redirecting</p>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirectUrl = urlParams.get("quickRedirect");
+      const label = document.getElementById("txt")
+      if (redirectUrl) {
+        label.textContent = "Redirecting To " + redirectUrl;
+        setTimeout(function () {
+          window.location.href = redirectUrl;
+        }, 1000);
+      } else {
+        label.textContent = "No Redirect URL Found";
+      }
+    </script>
+  </body>
+</html>

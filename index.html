@@ -1,68 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poem Homepage</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content Warning and Disclaimer</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #fcfcfc;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* Set the height of the body to the viewport height */
-        }
-        header {
-            background-color: #fcfcfc;
-            color: black;
-            padding: 20px 0;
-            text-align: center;
-        }
-        nav {
-            text-align: center;
-            margin-top: 20px;
-        }
-        nav a {
-            text-decoration: none;
-            color: #333;
-            background-color: #fff;
-            padding: 15px 30px;
-            border-radius: 8px;
-            margin: 0 20px;
-            transition: background-color 0.3s ease;
-            display: inline-block;
-        }
-        nav a:hover {
-            background-color: #ddd;
-        }
-        main {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 40px;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .button {
+        background-color: #0000007e;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 500ms;
+      }
+      .button:disabled {
+        background-color: #0000007e;
+        cursor: not-allowed;
+      }
+
+      .button:hover:not(:disabled) {
+        background-color: #000000;
+      }
     </style>
-</head>
-<body>
-    <header>
-        <h1>'fourteen days' Reading Option</h1>
-    </header>
-    <nav>
-        <a href="doc.html">Document Reading (Recommended For Smallscreen Devices)</a>
-        <a href="reading.html">Paragraph Reading</a>
-        <a href="book.html">The Book (Recommended For Widescreen Devices)</a>
-    </nav>
-</body>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Content Warning and Disclaimer</h1>
+      <p>
+        Please note that the following content is entirely fictional and is
+        presented for literary purposes only. Any resemblance to real events,
+        persons, or entities is purely coincidental.
+      </p>
+      <p>
+        This compilation of poems navigates through delicate subject matter that
+        may not be suitable for all audiences. Reader discretion is strongly
+        advised.
+      </p>
+      <p>
+        While these themes are approached with utmost sensitivity and
+        thoughtfulness, it is essential to recognize the potential impact they
+        may have on mental well-being.
+      </p>
+      <p>
+        It is crucial to emphasize that the content of this poem is not intended
+        as life advice or guidance. If you are experiencing depression or
+        contemplating self-harm, we urge you to seek assistance from a trusted
+        adult or medical professional immediately.
+      </p>
+      <p>To continue, please accept the terms and conditions:</p>
+      <button id="btn" class="button" onclick="acceptTerms()">Accept</button>
+    </div>
+
+    <script>
+      var btn = document.getElementById("btn");
+      if (localStorage.getItem("accepted")) {
+        console.log("Already Accepted");
+        function acceptTerms() {
+          window.location.href = "to.html?quickRedirect=doc";
+        }
+      } else {
+        function acceptTerms() {
+          var confirmation = confirm(
+            "By clicking 'OK', you confirm that you have read and understood the content warning and disclaimer."
+          );
+          if (confirmation) {
+            localStorage.setItem("accepted", true);
+            window.location.href = "to.html?quickRedirect=doc";
+          }
+        }
+        btn.disabled = true;
+        btn.textContent = "Please read and wait 10 seconds.";
+        setTimeout(function () {
+          btn.textContent = "Accept";
+          btn.disabled = false;
+        }, 10000);
+      }
+    </script>
+  </body>
 </html>
