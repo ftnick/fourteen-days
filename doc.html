@@ -4,7 +4,7 @@
     <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="assets/topbar.css">
+    <link rel="stylesheet" type="text/css" href="assets/topbar.css" />
     <title>fourteen days</title>
     <style type="text/css">
       @import url(https://themes.googleusercontent.com/fonts/css?kit=fvyYZ8D_r6q1snYdb-tnF85-x8zqu-667uHWljev_4A);
@@ -208,9 +208,13 @@
   <body class="c4 doc-content">
     <div class="topbar">
       <ul class="nav-options">
-          <li><a href="https://ftnick.github.io/ftnick/" class="nav-link">Visit My Profile</a></li>
+        <li>
+          <a href="https://ftnick.github.io/ftnick/" class="nav-link"
+            >Visit My Profile</a
+          >
+        </li>
       </ul>
-  </div>
+    </div>
     <audio controls>
       <source src="assets\music\myguardianangel.mp3" type="audio/mpeg" />
       Your browser does not support the audio element.
@@ -1707,6 +1711,19 @@
         audioControls.style.position = "fixed";
         audioControls.style.bottom = "20px";
         audioControls.style.right = "20px";
+
+        function isMobileDevice() {
+          return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+            navigator.userAgent
+          );
+        }
+
+        if (isMobileDevice()) {
+          console.log("User is on a mobile device.");
+          window.location.href = "to.html?quickRedirect=https://docs.google.com/document/d/1C8rkAZZENJRP-Ft3xArxy1TDx_zEOG_Kmlmmlq9RPmM/edit"
+        } else {
+          console.log("User is not on a mobile device.");
+        }
       });
     </script>
   </body>
